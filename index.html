@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Whois Information</title>
+</head>
+<body>
+    <h1>Whois Information</h1>
+    <div id="whoisInfo"></div>
+    <script>
+        let domain = "zkn.app";
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('domain')
+            
+            if(ref != undefined){
+                domain = ref;
+            }
+            fetch('https://api.nahida.one/whois/?query='+domain) // Assicurati che il percorso allo script PHP sia corretto
+                .then(response => response.json()) // Converti la risposta in JSON
+                .then(data => {
+                    console.log(data); // Log per debug
+                    displayWhoisData(data); // Funzione per mostrare i dati
+                })
+                .catch(error => console.error('Error fetching the data:', error));
+            });
+
+            function displayWhoisData(data) {
+                const container = document.getElementById('whoisInfo');
+                const list = document.createElement('ul'); // Creiamo una lista per visualizzare i dati
+
+                Object.entries(data).forEach(([key, value]) => {
+                    const item = document.createElement('li');
+                    item.textContent = `${key}: ${value}`;
+                    list.appendChild(item);
+                });
+
+                container.appendChild(list);
+            }
+
+    </script>
+</body>
+</html>
