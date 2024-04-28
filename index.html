@@ -1,44 +1,158 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Whois Information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain WHOIS - whois.zkn.app</title>
+    <meta name="description" content="Scopri i dettagli della tua connessione Internet, inclusi il tuo indirizzo IP, endpoint DNS e molto altro.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/zkn-app/zkn.app@master/sitePoint.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/zkn-app/fonts@latest/fonts/roboto.min.css');
+        @import url('https://cdn.jsdelivr.net/gh/zkn-app/fonts@0.0.2/fonts/Cascadia/Cascadia-Mono.min.css');
+        body{
+            font-family: roboto;
+        }
+        .title{
+            font-family: 'Cascadia Mono';
+        }
+    </style>
 </head>
 <body>
-    <h1>Whois Information</h1>
-    <div id="whoisInfo"></div>
-    <script>
-        let domain = "zkn.app";
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const ref = urlParams.get('domain')
-            
-            if(ref != undefined){
-                domain = ref;
-            }
-            fetch('https://api.nahida.one/whois/?query='+domain) // Assicurati che il percorso allo script PHP sia corretto
-                .then(response => response.json()) // Converti la risposta in JSON
-                .then(data => {
-                    console.log(data); // Log per debug
-                    displayWhoisData(data); // Funzione per mostrare i dati
-                })
-                .catch(error => console.error('Error fetching the data:', error));
-            });
-
-            function displayWhoisData(data) {
-                const container = document.getElementById('whoisInfo');
-                const list = document.createElement('ul'); // Creiamo una lista per visualizzare i dati
-
-                Object.entries(data).forEach(([key, value]) => {
-                    const item = document.createElement('li');
-                    item.textContent = `${key}: ${value}`;
-                    list.appendChild(item);
-                });
-
-                container.appendChild(list);
-            }
-
-    </script>
+  <header class="w-full bg-gray-900 text-white py-4">
+    <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-5 h-5"
+        >
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+          <path d="M3 12A9 3 0 0 0 21 12"></path>
+        </svg>
+        <span class="text-lg font-medium">Domain WHOIS <span class="text-xs">by<span class="bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent"> zkn</span></span>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+          <span>About</span>
+        </button>
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <path d="M12 17h.01"></path>
+          </svg>
+          <span>Help</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <section class="w-full py-12 md:py-16 lg:py-20">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="mb-8 md:mb-10 lg:mb-12">
+        <h1 class="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">Domain Whois</h1>
+        <p class="mt-2 text-gray-500 md:text-lg">
+            Discover domain details, ownership, and registration information.
+        </p>
+      </div>
+      <div class="grid gap-6">
+        <!-- WHOIS LOOKUP - start -->
+        <div class="overflow-x-auto rounded-lg border border-gray-200">
+          <div class="flex items-center justify-between bg-gray-50 px-4 py-3 border-b border-gray-200">
+            <div class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 text-gray-500"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+              <span class="text-sm font-medium text-gray-900">WHOIS Lookup</span>
+            </div>
+            <input
+              id="whois_input"
+              class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full max-w-xs"
+              placeholder="Enter a domain"
+              type="text"
+            />
+            <button
+              id="whois_search"
+              class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-4 h-4"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+              <span>Lookup</span>
+            </button>
+          </div>
+          <div class="p-4 text-sm text-gray-500">
+            <p id="whoisInfo" class="border-2 rounded-md p-4 bg-gray-50 overflow-x-auto"></p>
+          </div>
+        </div>
+        <!-- WHOIS - end -->
+      </div>
+    </div>
+  </section>
+    
+    <p class="text-center font-bold">Made by <a href="https://zkevin.net" class="text-blue-500">zkevin</a> with <i class="fa-solid fa-heart text-red-500"></i> in italy</p>
+<script src="app.js"></script>
+<script defer src="https://stat.nahida.one/script.js" data-website-id="63ac2e6d-6627-41fa-82a7-261dc5019c56"></script>
 </body>
 </html>
