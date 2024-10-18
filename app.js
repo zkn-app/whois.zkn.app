@@ -22,7 +22,7 @@ function displayWhoisData(data) {
 
 function get_whois(domain) {
     container.textContent = 'Loading... Attention: For less popular domains, processing time may be longer.'; // Show a loading message
-    fetch('https://api.nahida.one/whois/?query=' + encodeURIComponent(domain))
+    fetch('https://archived.me//whois/?query=' + encodeURIComponent(domain))
         .then(response => response.json())
         .then(data => {
             displayWhoisData(data);
